@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "dev": "nodemon --exec ts-node src/server --ext ts,js",
+    "dev": "nodemon --exec ts-node src/init --ext ts,js",
     "create": "nodemon --exec ts-node src/db --ext ts,js"
   },
   "repository": {

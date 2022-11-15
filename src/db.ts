@@ -14,7 +14,7 @@ export const pool = new Pool({
 createTableFn();
 
 module.exports = {
-  query: (text, params, callback) => {
+  query: (text: string, params, callback) => {
     const start = Date.now();
     return pool.query(text, params, (err, res) => {
       const duration = Date.now() - start;

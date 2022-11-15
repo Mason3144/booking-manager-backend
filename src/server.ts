@@ -1,13 +1,7 @@
-require("dotenv").config();
 import express from "express";
-
+import rootRouter from "./routers/rootRouter";
 const app = express();
-const port = 5000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/", rootRouter);
 
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+export default app;
