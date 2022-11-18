@@ -11,15 +11,16 @@ export const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-createTableFn();
-
 module.exports = {
-  query: (text: string, params, callback) => {
-    const start = Date.now();
-    return pool.query(text, params, (err, res) => {
-      const duration = Date.now() - start;
-      console.log("executed query", { text, duration, rows: res.rowCount });
-      callback(err, res);
-    });
+
+  findSingleUser: async (value: string, type: string) => {
+    const {rows} = await pool.query(`SELECT ${type} FROM owner WHERE ${type} = $1`, [value])
+    return rows[0]
   },
+  createOwner: async (username:string, password:string, email:string) => {
+    await pool.query(`INSERT INTO owner (username, password, email) VALUES ($1, $2, $3)`, [username, password, email])
+    const {rows} = await pool.query(`SELECT * FROM owner WHERE username = $1`, [username])
+    return rows[0]
+  }
+
 };

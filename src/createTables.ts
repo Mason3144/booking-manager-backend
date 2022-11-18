@@ -7,7 +7,7 @@ owner(
   password VARCHAR(128) NOT NULL,
   email VARCHAR(128) NOT NULL
 )`;
-
+// pgadmin4 - ALTER TABLE owner ADD UNIQUE (username), unique 속성추가
 const customer = `CREATE TABLE IF NOT EXISTS
 customer(
   id SERIAL PRIMARY KEY,
