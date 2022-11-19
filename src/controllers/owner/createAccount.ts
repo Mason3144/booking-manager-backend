@@ -1,6 +1,7 @@
 // import {pool} from "../db"
-const db = require('../db')
+const db = require('../../db')
 import bcrypt from "bcrypt"
+import { validation } from "../shares"
 
 interface Request {
   body: {
@@ -10,20 +11,11 @@ interface Request {
 
 export const postSignup = async (req: Request, res) => {
   const { body: { username, password, email } } = req
-  const validation = (username: string, password: string, email: string) => {
-    if (username.length < 3 || username.length > 20) {
-      res.send({ ok: false, error: "Username: 영문자 3~20개를 지켜주세요" })
-      
-    }
-    if (password.length < 3) {
-      res.send({ok:false, error:"Password: 영문자 3개 이상 입력해주세요"}) 
-    }
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
-      res.send({ok:false, error:"Email양식을 지켜주세요"})
-    }
-  }
   try {
-    validation(username,password,email)
+    const noValidation = validation(username, password, email)
+    if (noValidation) {
+      res.send(noValidation)
+    }
     // 비동기함수로 각각 처리하면 직렬방식으로 처리되어 속도가느려짐
     //Promise.all을 사용하여 병렬방식으로 두 함수를 한번에 처리
     const exists = (await Promise.all([db.findSingleUser(username, "username"), db.findSingleUser(email, "email")]))
