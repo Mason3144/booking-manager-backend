@@ -1,5 +1,5 @@
 // import {pool} from "../db"
-const db = require('../../db')
+const db = require('../../dbModules')
 import bcrypt from "bcrypt"
 import { validation } from "../shares"
 

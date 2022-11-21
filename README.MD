@@ -11,3 +11,6 @@
 - Create account
 - New password
 - Login
+
+
+Session check
