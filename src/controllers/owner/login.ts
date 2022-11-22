@@ -15,9 +15,9 @@ export const login = async (req, res) => {
         res.send({ok:false, error:"password가 일치하지 않습니다."})
     }
         const token = await jwt.sign({ id: user.id }, process.env.TOKEN_KEY);
-        req.session.token = token
+        req.session.user = user 
         req.session.login = true
-        console.log(req.session)
+        req.session.expires = false;
     res.send({ ok: true, token })
         
         

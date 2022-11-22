@@ -10,6 +10,8 @@ import { sessionStore } from "./db";
 const app = express();
 const logger = morgan("dev");
 
+const farFuture = new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 365 * 10));
+// 개인적으로 쓸 웹이므로 쿠키 지속을 10년으로 설정
 
 app.use( //mysql session을 이용하여 로그인정보를 쿠키 및 db에 저장
   session({
@@ -18,6 +20,9 @@ app.use( //mysql session을 이용하여 로그인정보를 쿠키 및 db에 저
     store: sessionStore,
     resave: true,
     saveUninitialized: false,
+    cookie : {
+      expires : farFuture
+    }
   })
 );
 
