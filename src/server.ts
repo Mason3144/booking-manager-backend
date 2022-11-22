@@ -10,12 +10,13 @@ import { sessionStore } from "./db";
 const app = express();
 const logger = morgan("dev");
 
+
 app.use( //mysql session을 이용하여 로그인정보를 쿠키 및 db에 저장
   session({
     key: "login-session",
     secret: process.env.COOKIE_SECRET,
     store: sessionStore,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
   })
 );
