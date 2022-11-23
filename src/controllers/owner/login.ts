@@ -10,15 +10,15 @@ export const login = async (req, res) => {
     const user = await db.findSingleUser(username, "username")
     const checkPassword = await bcrypt.compare(password, user.password)
     if (!user) {
-        res.send({ok:false,error:"유저가 존재하지 않습니다."})
+        return res.send({ ok: false, error: "유저가 존재하지 않습니다." }) 
     } else if (!checkPassword) {
-        res.send({ok:false, error:"password가 일치하지 않습니다."})
+        return res.send({ ok: false, error: "password가 일치하지 않습니다." })   
     }
         const token = await jwt.sign({ id: user.id }, process.env.TOKEN_KEY);
         req.session.user = user 
         req.session.login = true
         req.session.expires = false;
-    res.send({ ok: true, token })
+        return res.send({ ok: true, token })
         
         
     } catch (error) {

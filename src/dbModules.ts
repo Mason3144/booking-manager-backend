@@ -21,5 +21,13 @@ module.exports = {
     await conn.query(`INSERT INTO product (name, pictures, owner_id) VALUES ('${name}', '${pictures}', '${owner_id}')`)
     const [rows] = await conn.query(`SELECT * FROM product WHERE name = '${name}'`)
     return rows[0]
-  }
+  },
+  allProduct: async (owner_id: string) => {
+    const [rows] = await conn.query(`SELECT * FROM product WHERE owner_id = ${owner_id}`)
+    return rows
+  },
+  findSingleProduct: async (name: string) => {
+    const [rows] = await conn.query(`SELECT * FROM product WHERE name = '${name}'`)
+    return rows[0]
+  },
 };
