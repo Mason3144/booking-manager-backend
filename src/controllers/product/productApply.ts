@@ -1,6 +1,14 @@
 const db = require("../../dbModules");
 
-export const postProductApply = async (req, res) => {
+interface Request{
+  [key:string]: {
+      [key: string]: {
+          [key:string]:string|number
+      }
+  }
+}
+
+export const postProductApply = async (req:Request, res) => {
   try {
     const {
       body: { name },

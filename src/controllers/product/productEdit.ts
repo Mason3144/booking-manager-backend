@@ -2,7 +2,13 @@ import { handleDeletePhotoFromAWS } from "../../middlewares";
 
 const db = require("../../dbModules");
 
-export const productEdit = async(req,res)=>{
+interface Request{
+    [key:string]: {
+        [key: string]: string
+    }
+  }
+
+export const productEdit = async(req:Request,res)=>{
     try {
         const {
             body: { name },

@@ -1,8 +1,13 @@
 import { handleDeletePhotoFromAWS } from "../../middlewares";
 
 const db = require("../../dbModules");
+interface Request{
+    [key:string]: {
+        [key: string]: string|number
+    }
+  }
 
-export const productDelete = async (req, res) => {
+export const productDelete = async (req:Request, res) => {
     try {
         const existProduct = await db.findSingleProduct(req.body.id, "id")
         if (!existProduct) {
@@ -14,5 +19,4 @@ export const productDelete = async (req, res) => {
     } catch (error) {
         return res.send({ ok: false, error })
     }
-
 }

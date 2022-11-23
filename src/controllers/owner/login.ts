@@ -2,9 +2,18 @@ const db = require('../../dbModules')
 import bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken";
 
+interface Request {
+    session: {
+        user: {
+            [key:string]:string
+        },
+        login: boolean,
+        expires:boolean
+    },
+    body:{[key:string]:string}
+  }
 
-
-export const login = async (req, res) => {
+export const login = async (req:Request, res) => {
     try {
         const { body: { username, password } } = req
     const user = await db.findSingleUser(username, "username")
