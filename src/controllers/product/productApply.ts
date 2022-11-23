@@ -10,7 +10,7 @@ export const postProductApply = async (req, res) => {
       },
     } = req;
     
-    const productExists = await db.findSingleProduct(name);
+    const productExists = await db.findSingleProduct(name,"name");
 
     if (productExists) {
     return res.send({ ok: false, error: "같은 이름의 제품이 존재합니다. 이름을 바꿔주세요." })

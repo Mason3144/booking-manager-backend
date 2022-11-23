@@ -26,8 +26,14 @@ module.exports = {
     const [rows] = await conn.query(`SELECT * FROM product WHERE owner_id = ${owner_id}`)
     return rows
   },
-  findSingleProduct: async (name: string) => {
-    const [rows] = await conn.query(`SELECT * FROM product WHERE name = '${name}'`)
+  findSingleProduct: async (value: string, key:string) => {
+    const [rows] = await conn.query(`SELECT * FROM product WHERE ${key} = '${value}'`)
     return rows[0]
   },
+  editProduct: async (id: number, name: string, url?: string) => {
+    await conn.query(`UPDATE product SET name = '${name}' ${url? `, pictures = ${url}` :""} 
+    WHERE id = ${id};`)
+    const [rows] = await conn.query(`SELECT * FROM product WHERE name = '${name}'`)
+    return rows[0]
+  }
 };

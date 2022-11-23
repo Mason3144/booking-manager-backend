@@ -8,10 +8,11 @@ const s3 = new aws.S3({
     secretAccessKey: process.env.AWS_SECRET_KEY,
   },
 });
+const bucket = "booking-manager/imgs"
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "booking-manager/imgs",
+  bucket,
   acl: "public-read",
   key: function (req, file, cb) {
       cb(null, `${Date.now()}_${file.originalname}`);
@@ -21,6 +22,18 @@ const s3ImageUploader = multerS3({
 export const uploadFiles = multer({
   storage: s3ImageUploader
 })
+
+export const handleDeletePhotoFromAWS = (url: string) => {
+  const decodedUrl = decodeURI(url);
+  const Key = decodedUrl.split("amazonaws.com/")[1];
+
+  s3.deleteObject({
+      Bucket:bucket,
+      Key,
+    })
+};
+
+
 
 
 export const protectorMiddleware = (req, res, next) => {
