@@ -7,10 +7,10 @@ import { protectorMiddleware, uploadFiles } from "../middlewares";
 const productRouter = express.Router();
 
 
-productRouter.get("/", getProduct)
-productRouter.post("/apply", uploadFiles.single("file"), postProductApply)
-productRouter.post("/edit", uploadFiles.single("file"), productEdit)
-productRouter.delete("/delete")
+productRouter.get("/",protectorMiddleware, getProduct)
+productRouter.post("/apply",protectorMiddleware, uploadFiles.single("file"), postProductApply)
+productRouter.post("/edit",protectorMiddleware, uploadFiles.single("file"), productEdit)
+productRouter.delete("/delete", productDelete)
 
 //multer를 이용하여 파일에 접근하기
 
