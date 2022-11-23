@@ -33,6 +33,3 @@ export const postSignup = async (req: Request, res) => {
   }
   
 }
-
-export const getHome = (req, res) => {
-};

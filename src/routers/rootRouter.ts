@@ -1,7 +1,8 @@
 import express from "express";
-import {  getHome, postSignup } from "../controllers/owner/createAccount";
+import {  postSignup } from "../controllers/owner/createAccount";
 import { login } from "../controllers/owner/login";
 import { postFindAccount } from "../controllers/owner/postFindAccount";
+import { getHome } from "../controllers/root";
 
 const rootRouter = require("express-promise-router")();
 
