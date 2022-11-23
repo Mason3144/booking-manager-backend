@@ -23,14 +23,14 @@ export const uploadFiles = multer({
   storage: s3ImageUploader
 })
 
-export const handleDeletePhotoFromAWS = (url: string) => {
+export const handleDeletePhotoFromAWS = async(url: string) => {
   const decodedUrl = decodeURI(url);
   const Key = decodedUrl.split("amazonaws.com/")[1];
-
-  s3.deleteObject({
-      Bucket:bucket,
-      Key,
-    })
+  
+   await s3.deleteObject({
+      Bucket:"booking-manager",
+      Key
+    }).promise()
 };
 
 

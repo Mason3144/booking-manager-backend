@@ -35,5 +35,8 @@ module.exports = {
     WHERE id = ${id};`)
     const [rows] = await conn.query(`SELECT * FROM product WHERE name = '${name}'`)
     return rows[0]
+  },
+  deleteProduct: async (id: number) => {
+    await conn.query(`DELETE FROM product WHERE id = ${id}`)
   }
 };
