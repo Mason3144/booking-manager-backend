@@ -13,7 +13,7 @@ productRouter.post(
   uploadFiles.single("file"),
   postProductApply
 );
-productRouter.post(
+productRouter.patch(
   "/edit",
   protectorMiddleware,
   uploadFiles.single("file"),
