@@ -30,6 +30,6 @@ export const postProductApply = async (req:Request, res) => {
     return res.send({ok:true, newProduct})
 
   } catch (error) {
-    res.send({ok:false,error})
+    return res.send({ok:false,error})
   }
 };

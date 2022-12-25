@@ -31,7 +31,7 @@ export const login = async (req:Request, res) => {
         
         
     } catch (error) {
-        res.send({ok:false, error})
+        return res.send({ok:false, error})
     }
     
     
