@@ -1,16 +1,6 @@
-## Schemas
+## Rest API를 이용한 파일 업로드 서버
 
-- owner [id, username, password, email]
-- customers [id, name, phone, adress, sns,orders[], owner]
-- orders [product[], date ]
-- product [id, name, pictures]
-
-
-## Owner
-
-- Create account
-- New password
-- Login
-
-
-Session check
+- AWS-RDS, AWS-S3, AWS-EC2
+- Mysql 쿼리문
+- Mysql session
+- Multer, Multer s3
